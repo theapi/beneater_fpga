@@ -103,7 +103,7 @@ https://fpgasoftware.intel.com/eula.
 		(line (pt 82 8)(pt 78 12))
 		(line (pt 78 12)(pt 82 8))
 	)
-	(annotation_block (location)(rect 416 200 480 216))
+	(annotation_block (location)(rect 480 128 544 144))
 )
 (symbol
 	(rect 416 168 480 216)
