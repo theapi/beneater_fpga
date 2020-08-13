@@ -24,7 +24,7 @@ https://fpgasoftware.intel.com/eula.
 	(input)
 	(rect 352 216 520 232)
 	(text "INPUT" (rect 125 0 154 9)(font "Arial" (font_size 6)))
-	(text "CLOCK_50" (rect 5 0 61 10)(font "Arial" ))
+	(text "CLOCK_50" (rect 5 0 60 10)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -54,6 +54,23 @@ https://fpgasoftware.intel.com/eula.
 	)
 	(annotation_block (location)(rect 840 232 904 248))
 )
+(pin
+	(output)
+	(rect 688 128 864 144)
+	(text "OUTPUT" (rect 1 0 41 9)(font "Arial" (font_size 6)))
+	(text "GPIO_1[35]" (rect 90 0 146 10)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+	(annotation_block (location)(rect 864 144 928 160))
+)
 (symbol
 	(rect 520 192 664 272)
 	(text "clock_cpu" (rect 5 0 53 10)(font "Arial" ))
@@ -75,4 +92,12 @@ https://fpgasoftware.intel.com/eula.
 	(drawing
 		(rectangle (rect 16 16 128 64))
 	)
+)
+(connector
+	(pt 688 136)
+	(pt 664 136)
+)
+(connector
+	(pt 664 136)
+	(pt 664 224)
 )
