@@ -661,25 +661,16 @@ set_location_assignment PIN_E12 -to VGA_R[6]
 set_location_assignment PIN_F13 -to VGA_R[7]
 set_location_assignment PIN_C10 -to VGA_SYNC_N
 set_location_assignment PIN_D11 -to VGA_VS
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity DE1_SOC -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity DE1_SOC -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -entity DE1_SOC -section_id Top
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity DE1_SOC -section_id Top
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity basics -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity basics -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -entity basics -section_id Top
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[1] -entity basics
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[0] -entity basics
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY -entity basics
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity basics -section_id Top
-set_global_assignment -name BDF_FILE rtl/block_diagram/project.bdf
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+
+
+set_global_assignment -name BDF_FILE project.bdf
+set_global_assignment -name VERILOG_FILE ../rtl/verilog/my_and.v
+set_global_assignment -name VERILOG_FILE ../bench/verilog/my_and_tb.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name VERILOG_FILE rtl/verilog/my_and.v
-set_global_assignment -name VERILOG_FILE bench/verilog/my_and_tb.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
