@@ -22,7 +22,7 @@ ADDRESS_RADIX=UNS;
 DATA_RADIX=HEX;
 
 CONTENT BEGIN
-	[0..41]  :   0000;
-	42     :   FFFF;
-	[43..23998]  :   0000;
+	[0..11024]  :   0000;
+	11025  :   FFFF;
+	[11026..23998]  :   0000;
 END;

@@ -7,7 +7,8 @@ module vga_frame_tb();
     reg [10:0] vga_v;
     wire [23:0] pixel_out;
     wire [15:0] read_address;
-wire [15:0] pixel_number;
+wire [31:0] pixel_number;
+wire  [4:0] pixel_bit;
 
     vga_frame U0(
         .clk(clk),
@@ -15,7 +16,8 @@ wire [15:0] pixel_number;
         .vga_v(vga_v),
         .pixel_out(pixel_out),
         .read_address(read_address),
-        .pixel_number(pixel_number)
+        .pixel_number(pixel_number),
+	.pixel_bit(pixel_bit)
     );
 
 
@@ -99,8 +101,8 @@ wire [15:0] pixel_number;
         vga_v = 10'd10;
 
 	#4
-        vga_h = 10'd18;
-        vga_v = 10'd10;
+        vga_h = 10'd400;
+        vga_v = 10'd220;
 
 	#4
         vga_h = 10'd800;

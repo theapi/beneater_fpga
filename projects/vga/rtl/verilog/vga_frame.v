@@ -13,7 +13,8 @@ module vga_frame(
 
 	output [23:0] pixel_out, // The requested RGB pixel value at vga_h x vga_v
 	output [15:0] read_address,
-	output [15:0] pixel_number
+	output [31:0] pixel_number,
+	output [4:0] pixel_bit
 ); 
 
 	
@@ -23,14 +24,14 @@ module vga_frame(
 	wire load;
 	wire [15:0] ram_value; // Value read from the ram.
 	
-	wire [4:0] pixel_bit;
+	//wire [4:0] pixel_bit;
 	//wire [15:0] pixel_number;
 	
 	assign write_address = 16'd0; // not really used,just needed for the ram interface.
 	assign data_in = 16'd0; // junk for the ram input interface.
 	assign load = 1'b0; // never write to the ram.
 
-	assign pixel_number = vga_h + (vga_v * 800);
+	assign pixel_number = (vga_v * 16'd800) + vga_h;
 	assign read_address = pixel_number >> 4; // divide by 16
 	assign pixel_bit = pixel_number % 16'd16;
 	
