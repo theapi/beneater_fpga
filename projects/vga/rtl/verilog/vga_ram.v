@@ -12,13 +12,15 @@
 module vga_ram(
     output reg [15:0] q,
     input [15:0] d,
-    input [12:0] write_address, read_address,
+    input [15:0] write_address, read_address,
     input we, clk
 );
-    // Divide by 15 because we waste the last bit of every address.
-    // (800 x 480 * 3) 3 bit colour (/15 = 76800)
+    // 1152000 bits of pixel data
+	 // 5 pixels per reg 1152000 / 5 = 230400 regesters needed
+    // (800 x 480 * 3) 3 bit colour
+	 // 230399
     (* ramstyle = "M9K" *)
-    reg [15:0] mem [76800:0] /* synthesis ram_init_file = "../mif/vga.mif" */; // 3bits per pixel 16-bit RAM
+    reg [15:0] mem [230400:0] /* synthesis ram_init_file = "../mif/vga.mif" */; // 3bits per pixel 16-bit RAM
     
     always @ (posedge clk) begin
         if (we)
