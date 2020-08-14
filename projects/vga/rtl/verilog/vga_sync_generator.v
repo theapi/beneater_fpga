@@ -4,7 +4,6 @@ module vga_sync_generator(
     output blank_n,
     output reg [10:0] next_pixel_h,
     output reg [10:0] next_pixel_v,
-    output reg [31:0] next_pixel_addr,
     output HS,
     output VS
 );
@@ -57,8 +56,6 @@ module vga_sync_generator(
     parameter vert_visible  = 480;
     parameter vert_back  = 31;
     parameter vert_front = 13;
-    
-    parameter visible_pixels = 38400; // hori_visible * vert_visible
 
 
 //=======================================================
@@ -127,16 +124,7 @@ module vga_sync_generator(
             end 
         end
     end
-    
-    always@(posedge vga_clk, posedge reset) begin
-        if (reset) begin
-            next_pixel_addr <= 32'd1;
-        end else if (next_pixel_addr == visible_pixels) begin
-            next_pixel_addr <= 32'd0;
-        end else if (blank_n && (next_pixel_h < hori_visible)) begin
-            next_pixel_addr <= next_pixel_addr + 32'd1;
-        end 
-    end
+ 
 
     // Sync pulses
     assign HS = (h_cnt < hori_sync) ? 1'b1 : 1'b0;

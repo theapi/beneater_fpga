@@ -309,4 +309,6 @@ set_global_assignment -name VERILOG_FILE ../rtl/verilog/vga_ram.v
 set_global_assignment -name MIF_FILE ../mif/vga.mif
 set_global_assignment -name VERILOG_FILE ../rtl/verilog/vga_sync_generator.v
 set_global_assignment -name VERILOG_FILE ../rtl/verilog/vga_controller.v
+set_global_assignment -name VERILOG_FILE ../rtl/verilog/vga_frame.v
+set_global_assignment -name VERILOG_FILE ../rtl/verilog/clock_25.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

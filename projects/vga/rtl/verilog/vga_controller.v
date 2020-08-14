@@ -12,8 +12,7 @@ module vga_controller(
     output [7:0] blue,
 	 
     output [10:0] next_pixel_h,
-    output [10:0] next_pixel_v,
-    output [31:0] next_pixel_addr
+    output [10:0] next_pixel_v
 );
 
     reg [7:0] r_red;
@@ -27,7 +26,6 @@ module vga_controller(
         .blank_n(blank_n),
         .next_pixel_h(next_pixel_h),
         .next_pixel_v(next_pixel_v),
-        .next_pixel_addr(next_pixel_addr),
         .HS(HS),
         .VS(VS)
     );
