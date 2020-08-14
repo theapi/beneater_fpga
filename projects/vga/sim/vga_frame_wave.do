@@ -1,0 +1,27 @@
+onerror {resume}
+quietly WaveActivateNextPane {} 0
+add wave -noupdate /vga_frame_tb/clk
+add wave -noupdate -radix unsigned /vga_frame_tb/vga_h
+add wave -noupdate -radix unsigned /vga_frame_tb/vga_v
+add wave -noupdate -radix unsigned /vga_frame_tb/pixel_number
+add wave -noupdate -radix unsigned /vga_frame_tb/read_address
+add wave -noupdate /vga_frame_tb/pixel_out
+
+TreeUpdate [SetDefaultTree]
+WaveRestoreCursors {{Cursor 1} {50 ns} 0}
+quietly wave cursor active 1
+configure wave -namecolwidth 176
+configure wave -valuecolwidth 100
+configure wave -justifyvalue left
+configure wave -signalnamewidth 1
+configure wave -snapdistance 10
+configure wave -datasetprefix 0
+configure wave -rowmargin 4
+configure wave -childrowmargin 2
+configure wave -gridoffset 0
+configure wave -gridperiod 1
+configure wave -griddelta 40
+configure wave -timeline 0
+configure wave -timelineunits ns
+update
+WaveRestoreZoom {0 ns} {400 ns}
