@@ -7,14 +7,13 @@
  */
  
 module vga_ram(
-    output reg [15:0] q,
-    input [15:0] d,
-    input [15:0] write_address, read_address,
+    output reg q,
+    input d,
+    input [19:0] write_address, read_address,
     input we, clk
 );
-    // Black & white one pixel per bit: 800 * 480 = 384000 / 16 = 24000
-    (* ramstyle = "M9K" *)
-    reg [15:0] mem [24000:0] /* synthesis ram_init_file = "../mif/vga.mif" */;
+    // 1 pixel per address :) 
+    reg mem [383999:0] /* synthesis ram_init_file = "../mif/vga.mif" */;
     
     always @ (posedge clk) begin
         if (we)
