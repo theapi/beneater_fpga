@@ -3,9 +3,7 @@ quietly WaveActivateNextPane {} 0
 add wave -noupdate /vga_frame_tb/clk
 add wave -noupdate -radix unsigned /vga_frame_tb/vga_h
 add wave -noupdate -radix unsigned /vga_frame_tb/vga_v
-add wave -noupdate -radix unsigned /vga_frame_tb/pixel_number
 add wave -noupdate -radix unsigned /vga_frame_tb/read_address
-add wave -noupdate -radix unsigned /vga_frame_tb/pixel_bit
 add wave -noupdate /vga_frame_tb/pixel_out
 
 TreeUpdate [SetDefaultTree]

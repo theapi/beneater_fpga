@@ -7,13 +7,13 @@
  */
  
 module vga_ram(
-    output reg q,
+    output reg [2:0] q,
     input d,
     input [19:0] write_address, read_address,
     input we, clk
 );
     // 1 pixel per address :) 
-    reg mem [383999:0] /* synthesis ram_init_file = "../mif/vga.mif" */;
+    reg [2:0] mem [383999:0] /* synthesis ram_init_file = "../mif/vga.mif" */;
     
     always @ (posedge clk) begin
         if (we)

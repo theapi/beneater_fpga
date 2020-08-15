@@ -1,33 +1,29 @@
 `timescale 10ns/10ns
 module vga_frame_tb();
-   
+
 	// Declare inputs as regs and outputs as wires
 	reg clk;
     reg [10:0] vga_h;
     reg [10:0] vga_v;
     wire [23:0] pixel_out;
-    wire [15:0] read_address;
-wire [31:0] pixel_number;
-wire  [4:0] pixel_bit;
+    wire [19:0] read_address;
 
     vga_frame U0(
         .clk(clk),
         .vga_h(vga_h),
         .vga_v(vga_v),
         .pixel_out(pixel_out),
-        .read_address(read_address),
-        .pixel_number(pixel_number),
-	.pixel_bit(pixel_bit)
+        .read_address(read_address)
     );
 
 
 	// Initialize all variables
-	initial begin        
+	initial begin
 
 
         clk = 1;
 
-        
+
         #4
         vga_h = 10'd5;
         vga_v = 10'd0;
@@ -47,7 +43,7 @@ wire  [4:0] pixel_bit;
 	#4
         vga_h = 10'd800;
         vga_v = 10'd3;
-        
+
 	#4
         vga_h = 10'd5;
         vga_v = 10'd10;
@@ -119,6 +115,6 @@ wire  [4:0] pixel_bit;
     always begin
         #1 clk = !clk;
     end
-	
+
 endmodule
 

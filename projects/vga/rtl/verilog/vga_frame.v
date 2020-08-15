@@ -15,14 +15,14 @@ module vga_frame(
 	output [19:0] read_address
 ); 
 
-	wire ram_value; // Value read from the ram.
+	wire [2:0] ram_value; // Value read from the ram.
 
 	// Each pixel has it's own address which is the same as the pixel number.
 	assign read_address = (vga_v * 16'd800) + vga_h;
 	
-	assign pixel_out[23:16] = 8'd0; //= {8{ ram_value }}; // translate the single bit to 8 bits
-   assign pixel_out[15:8]  = {8{ ram_value }}; // translate the single bit to 8 bits
-   assign pixel_out[7:0]   = 8'd0; //{8{ ram_value }}; // translate the single bit to 8 bits
+	assign pixel_out[23:16] = {8{ ram_value[2] }}; // RED translate the single bit to 8 bits
+   assign pixel_out[15:8]  = {8{ ram_value[1] }}; // GREEN translate the single bit to 8 bits
+   assign pixel_out[7:0]   = {8{ ram_value[0] }}; // BLUE translate the single bit to 8 bits
 
 	vga_ram vgaram(
 		.q(ram_value), // from ram
