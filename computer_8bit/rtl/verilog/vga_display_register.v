@@ -7,20 +7,20 @@
     input [7:0] data_in,     // the value of the register to show
     input [10:0] vga_h,      // the current vertical pixel count being displayed
     input [10:0] vga_v,      // the current horizontal pixel count being displayed
-    output [2:0] pixel_out,  // The requested  pixel value at vga_h x vga_v
+    output [23:0] pixel_out, // The requested  pixel value at vga_h x vga_v
     output display_on        // whether the screen should be displaying this
  );
 
-    parameter START_H = 10;  // horizontal pixel where this should appear on the screen
+    parameter START_H = 10; // horizontal pixel where this should appear on the screen
     parameter START_V = 10; // vertical pixel where this should appear on the screen
-    parameter COLOUR_BG = 3'b010;
-    parameter COLOUR_ON = 3'b100;
-    parameter COLOUR_OFF = 3'b000;
+    parameter COLOUR_BG  = 24'h777777;
+    parameter COLOUR_ON  = 24'hFF0000;
+    parameter COLOUR_OFF = 24'h444444;
     parameter W = 11'd16; // Width of each "led"
     parameter H = 11'd16; // Height of each "led"
     parameter WG = 11'd4; // Gap between each "led"
 
-    reg [2:0] out = 0;
+    reg [23:0] out = 0;
     assign pixel_out = out;
     reg on = 0;
     assign display_on = on;
