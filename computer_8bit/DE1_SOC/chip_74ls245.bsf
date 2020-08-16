@@ -21,7 +21,7 @@ https://fpgasoftware.intel.com/eula.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 176 128)
+	(rect 16 16 184 128)
 	(text "chip_74ls245" (rect 5 0 58 12)(font "Arial" ))
 	(text "inst" (rect 8 96 20 108)(font "Arial" ))
 	(port
@@ -41,18 +41,25 @@ https://fpgasoftware.intel.com/eula.
 	(port
 		(pt 0 64)
 		(input)
-		(text "oe" (rect 0 0 9 12)(font "Arial" ))
-		(text "oe" (rect 21 59 30 71)(font "Arial" ))
-		(line (pt 0 64)(pt 16 64)(line_width 1))
+		(text "bus[7..0]" (rect 0 0 34 12)(font "Arial" ))
+		(text "bus[7..0]" (rect 21 59 55 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
 	)
 	(port
-		(pt 160 32)
+		(pt 0 80)
+		(input)
+		(text "oe" (rect 0 0 9 12)(font "Arial" ))
+		(text "oe" (rect 21 75 30 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
+	)
+	(port
+		(pt 168 32)
 		(output)
 		(text "out[7..0]" (rect 0 0 31 12)(font "Arial" ))
-		(text "out[7..0]" (rect 108 27 139 39)(font "Arial" ))
-		(line (pt 160 32)(pt 144 32)(line_width 3))
+		(text "out[7..0]" (rect 116 27 147 39)(font "Arial" ))
+		(line (pt 168 32)(pt 152 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 144 96)(line_width 1))
+		(rectangle (rect 16 16 152 96)(line_width 1))
 	)
 )
