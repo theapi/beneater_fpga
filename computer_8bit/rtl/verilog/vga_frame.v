@@ -8,6 +8,7 @@ module vga_frame(
 	input clk, // the system clock
   input cpu_clock,
 	input [7:0] bus, // The value of the bus.
+  input [7:0] switches,
   input [7:0] a_reg,
   input [7:0] b_reg,
   input [7:0] instruction_reg,
@@ -51,9 +52,21 @@ module vga_frame(
     .display_on(bus_display_on)
   );
 
+  wire [2:0] switches_display_out;
+  wire switches_display_on;
+  vga_display_register #(.START_H(11'd50), .START_V(11'd30)) switches_display (
+    .clk(clk),
+    .data_in(switches),
+    .vga_h(vga_h),
+    .vga_v(vga_v),
+    .bg(3'b010),
+    .pixel_out(switches_display_out),
+    .display_on(switches_display_on)
+  );
+
   wire [2:0] a_reg_display_out;
   wire a_reg_display_on;
-  vga_display_register #(.START_H(11'd50), .START_V(11'd30)) a_reg_display (
+  vga_display_register #(.START_H(11'd50), .START_V(11'd40)) a_reg_display (
     .clk(clk),
     .data_in(a_reg),
     .vga_h(vga_h),
@@ -65,7 +78,7 @@ module vga_frame(
 
   wire [2:0] b_reg_display_out;
   wire b_reg_display_on;
-  vga_display_register #(.START_H(11'd50), .START_V(11'd40)) b_reg_display (
+  vga_display_register #(.START_H(11'd50), .START_V(11'd50)) b_reg_display (
     .clk(clk),
     .data_in(b_reg),
     .vga_h(vga_h),
@@ -77,7 +90,7 @@ module vga_frame(
 
   wire [2:0] instruction_reg_display_out;
   wire instruction_reg_display_on;
-  vga_display_register #(.START_H(11'd50), .START_V(11'd50)) instruction_reg_display (
+  vga_display_register #(.START_H(11'd50), .START_V(11'd60)) instruction_reg_display (
     .clk(clk),
     .data_in(instruction_reg),
     .vga_h(vga_h),
@@ -89,7 +102,7 @@ module vga_frame(
 
   wire [2:0] sum_display_out;
   wire sum_display_on;
-  vga_display_register #(.START_H(11'd50), .START_V(11'd60)) sum_display (
+  vga_display_register #(.START_H(11'd50), .START_V(11'd70)) sum_display (
     .clk(clk),
     .data_in(sum),
     .vga_h(vga_h),
@@ -106,6 +119,9 @@ module vga_frame(
     end
     else if (cpu_clock_display_on) begin
       out <= cpu_clock_display_out;
+    end
+    else if (switches_display_on) begin
+      out <= switches_display_out;
     end
     else if (a_reg_display_on) begin
       out <= a_reg_display_out;
