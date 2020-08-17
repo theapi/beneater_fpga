@@ -13,7 +13,7 @@
 
     parameter START_H = 10; // horizontal pixel where this should appear on the screen
     parameter START_V = 10; // vertical pixel where this should appear on the screen
-    parameter COLOUR_BG  = 24'h222222;
+    parameter COLOUR_BG  = 24'hFFFFFF;
     parameter COLOUR_ON  = 24'hFF0000;
     parameter COLOUR_OFF = 24'h444444;
     parameter W = 11'd26; // Width of each "led"

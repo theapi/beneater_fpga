@@ -41,10 +41,7 @@ module vga_frame(
   // Show the cpu clock value
   wire [23:0] cpu_clock_display_out;
   wire cpu_clock_display_on;
-  vga_display_register #(
-    .START_H(11'd50),
-    .START_V(11'd10)
-  ) cpu_clock_display (
+  vga_display_register #(.START_H(11'd190), .START_V(11'd20)) cpu_clock_display (
     .clk(clk),
     .data_in({8{ cpu_clock }}),
     .vga_h(vga_h),
@@ -56,7 +53,7 @@ module vga_frame(
   // Show the data bus value
   wire [23:0] bus_display_out;
   wire bus_display_on;
-  vga_display_register #(.START_H(11'd50), .START_V(11'd40)) bus_display (
+  vga_display_register #(.START_H(11'd190), .START_V(11'd70)) bus_display (
     .clk(clk),
     .data_in(bus),
     .vga_h(vga_h),
@@ -67,7 +64,7 @@ module vga_frame(
 
   wire [23:0] switches_display_out;
   wire switches_display_on;
-  vga_display_register #(.START_H(11'd50), .START_V(11'd70)) switches_display (
+  vga_display_register #(.START_H(11'd190), .START_V(11'd120)) switches_display (
     .clk(clk),
     .data_in(switches),
     .vga_h(vga_h),
@@ -78,7 +75,7 @@ module vga_frame(
 
   wire [23:0] a_reg_display_out;
   wire a_reg_display_on;
-  vga_display_register #(.START_H(11'd50), .START_V(11'd100)) a_reg_display (
+  vga_display_register #(.START_H(11'd190), .START_V(11'd170)) a_reg_display (
     .clk(clk),
     .data_in(a_reg),
     .vga_h(vga_h),
@@ -89,7 +86,7 @@ module vga_frame(
 
   wire [23:0] b_reg_display_out;
   wire b_reg_display_on;
-  vga_display_register #(.START_H(11'd50), .START_V(11'd130)) b_reg_display (
+  vga_display_register #(.START_H(11'd190), .START_V(11'd220)) b_reg_display (
     .clk(clk),
     .data_in(b_reg),
     .vga_h(vga_h),
@@ -98,9 +95,20 @@ module vga_frame(
     .display_on(b_reg_display_on)
   );
 
+  wire [23:0] sum_display_out;
+  wire sum_display_on;
+  vga_display_register #(.START_H(11'd190), .START_V(11'd270)) sum_display (
+    .clk(clk),
+    .data_in(sum),
+    .vga_h(vga_h),
+    .vga_v(vga_v),
+    .pixel_out(sum_display_out),
+    .display_on(sum_display_on)
+  );
+
   wire [23:0] instruction_reg_display_out;
   wire instruction_reg_display_on;
-  vga_display_register #(.START_H(11'd50), .START_V(11'd160)) instruction_reg_display (
+  vga_display_register #(.START_H(11'd190), .START_V(11'd320)) instruction_reg_display (
     .clk(clk),
     .data_in(instruction_reg),
     .vga_h(vga_h),
@@ -109,16 +117,6 @@ module vga_frame(
     .display_on(instruction_reg_display_on)
   );
 
-  wire [23:0] sum_display_out;
-  wire sum_display_on;
-  vga_display_register #(.START_H(11'd50), .START_V(11'd190)) sum_display (
-    .clk(clk),
-    .data_in(sum),
-    .vga_h(vga_h),
-    .vga_v(vga_v),
-    .pixel_out(sum_display_out),
-    .display_on(sum_display_on)
-  );
 
   // Display the registers or the background.
   always @ (posedge clk) begin
