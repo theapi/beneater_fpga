@@ -20,12 +20,23 @@ module vga_frame(
 	output [23:0] pixel_out // The requested RGB pixel value at vga_h x vga_v
 );
 
+  wire ram_value; // Value read from the ram, 1 bit colour
+  wire [19:0] read_address;
+  // Each pixel has it's own address which is the same as the pixel number.
+	assign read_address = (vga_v * 16'd800) + vga_h;
+
   reg [23:0] out;
   assign pixel_out = out;
 
-	// assign pixel_out[23:16] = {8{ out[2] }}; // RED translate the single bit to 8 bits
-  // assign pixel_out[15:8]  = {8{ out[1] }}; // GREEN translate the single bit to 8 bits
-  // assign pixel_out[7:0]   = {8{ out[0] }}; // BLUE translate the single bit to 8 bits
+  // Get the background image.
+  vga_ram vgaram(
+		.q(ram_value), // from ram
+		.d(1'd0), // to ram
+		.write_address(19'd0), // where to write in ram
+		.read_address(read_address), // where to read from
+		.we(1'b0), // write enable, always off
+		.clk(clk)
+	);
 
   // Show the cpu clock value
   wire [23:0] cpu_clock_display_out;
@@ -133,7 +144,10 @@ module vga_frame(
       out <= sum_display_out;
     end
     else begin
-      out <= 23'h0;
+      // Use the 1bit data from the ram.
+      out[23:16] <= {8{ ram_value }}; // RED translate the single bit to 8 bits
+      out[15:8]  <= {8{ ram_value }}; // GREEN translate the single bit to 8 bits
+      out[7:0]   <= {8{ ram_value }}; // BLUE translate the single bit to 8 bits
     end
   end
 
