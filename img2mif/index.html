@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 10px;
+        padding: 10px;
+      }
+    </style>
+
+
+  </head>
+  <body>
+
+    <h2>Select image</h2>
+    <input type="file" id="file-input" name="file-input"/><br />
+
+    <textarea id="output" class="output"></textarea><br />
+    <button type="button" class="generate-button" onclick="outputMif()">Generate code</button><br />
+    <canvas id="myCanvas" width="800" height="480"></canvas>
+
+
+    <script>
+
+        function outputMif() {
+            for (let x = 0; x < 800; x++) {
+                for (let y = 0; y < 480; y++) {
+                    const pixel = ctx.getImageData(x, y, 1, 1);
+                    console.log(pixel.data[0]);
+                    if (pixel.data[0] > 0) {
+                        output.textContent += '1, ';
+                    } else {
+                        output.textContent += '0, ';
+                    }
+                }
+            }
+        }
+
+    function pick(event) {
+        var x = event.layerX;
+        var y = event.layerY;
+        var pixel = ctx.getImageData(x, y, 1, 1);
+        var data = pixel.data;
+        var rgba = 'rgba(' + data[0] + ', ' + data[1] +
+                    ', ' + data[2] + ', ' + (data[3] / 255) + ')';
+                    //output.style.background =  rgba;
+                    output.textContent = rgba;
+    }
+
+
+	// canvas
+    var output = document.getElementById('output');
+	var canvas = document.getElementById('myCanvas');
+    // canvas.addEventListener('mousemove', pick);
+	var ctx = canvas.getContext("2d");
+	var fileinput = document.getElementById('file-input'); // input file
+	var img = new Image();
+
+	fileinput.onchange = function(evt) {
+	    var files = evt.target.files; // FileList object
+	    var file = files[0];
+        console.log(file);
+	    if(file.type.match('image.*')) {
+	        var reader = new FileReader();
+	        // Read in the image file as a data URL.
+	        reader.readAsDataURL(file);
+	    	reader.onload = function(evt){
+	    		if( evt.target.readyState == FileReader.DONE) {
+	    			img.src = evt.target.result;
+                    console.log(img.src);
+				    ctx.drawImage(img, 0, 0);
+			    }
+	    	}
+
+	    } else {
+	        alert("not an image");
+	    }
+	};
+
+    </script>
+
+  </body>
+</html>
