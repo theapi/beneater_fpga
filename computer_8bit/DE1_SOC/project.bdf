@@ -123,6 +123,23 @@ https://fpgasoftware.intel.com/eula.
 	(annotation_block (location)(rect -552 672 -480 688))
 )
 (pin
+	(input)
+	(rect -728 960 -560 976)
+	(text "INPUT" (rect 125 0 154 9)(font "Arial" (font_size 6)))
+	(text "KEY[1]" (rect 5 0 39 10)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 149 16)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect -800 976 -728 992))
+)
+(pin
 	(output)
 	(rect 672 184 848 200)
 	(text "OUTPUT" (rect 1 0 41 9)(font "Arial" (font_size 6)))
@@ -642,6 +659,42 @@ https://fpgasoftware.intel.com/eula.
 		(rectangle (rect 16 16 224 192))
 	)
 )
+(symbol
+	(rect -432 896 -264 1008)
+	(text "register_8bit" (rect 5 0 65 10)(font "Arial" ))
+	(text "inst_reg_a" (rect 8 96 58 106)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clk" (rect 0 0 14 10)(font "Arial" ))
+		(text "clk" (rect 21 27 35 37)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "load" (rect 0 0 21 10)(font "Arial" ))
+		(text "load" (rect 21 43 42 53)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 168 32)
+		(input)
+		(text "bus[7..0]" (rect 0 0 41 10)(font "Arial" ))
+		(text "bus[7..0]" (rect 102 24 143 34)(font "Arial" ))
+		(line (pt 152 32)(pt 168 32)(line_width 3))
+	)
+	(port
+		(pt 168 48)
+		(output)
+		(text "out[7..0]" (rect 0 0 38 10)(font "Arial" ))
+		(text "out[7..0]" (rect 115 43 153 53)(font "Arial" ))
+		(line (pt 168 48)(pt 152 48)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 152 96))
+	)
+)
 (connector
 	(pt 640 192)
 	(pt 672 192)
@@ -861,11 +914,6 @@ https://fpgasoftware.intel.com/eula.
 	(bus)
 )
 (connector
-	(pt 240 664)
-	(pt 240 824)
-	(bus)
-)
-(connector
 	(pt -520 416)
 	(pt -464 416)
 )
@@ -892,10 +940,6 @@ https://fpgasoftware.intel.com/eula.
 (connector
 	(pt -136 648)
 	(pt -160 648)
-)
-(connector
-	(pt -160 648)
-	(pt -160 400)
 )
 (connector
 	(pt 400 536)
@@ -925,6 +969,71 @@ https://fpgasoftware.intel.com/eula.
 	(pt -128 400)
 	(pt -96 400)
 )
+(connector
+	(pt -160 512)
+	(pt -832 512)
+)
+(connector
+	(pt -160 648)
+	(pt -160 512)
+)
+(connector
+	(pt -160 512)
+	(pt -160 400)
+)
+(connector
+	(pt -432 928)
+	(pt -832 928)
+)
+(connector
+	(pt -832 512)
+	(pt -832 928)
+)
+(connector
+	(pt 240 664)
+	(pt 240 824)
+	(bus)
+)
+(connector
+	(pt -480 968)
+	(pt -480 944)
+)
+(connector
+	(pt -432 944)
+	(pt -480 944)
+)
+(connector
+	(pt -264 928)
+	(pt 240 928)
+	(bus)
+)
+(connector
+	(pt 240 824)
+	(pt 240 928)
+	(bus)
+)
+(connector
+	(pt 400 584)
+	(pt 80 584)
+	(bus)
+	(color 0 170 0)
+)
+(connector
+	(pt -264 944)
+	(pt 80 944)
+	(bus)
+	(color 0 170 0)
+)
+(connector
+	(pt 80 584)
+	(pt 80 944)
+	(bus)
+	(color 0 170 0)
+)
+(connector
+	(pt -560 968)
+	(pt -480 968)
+)
 (junction (pt -536 208))
 (junction (pt -472 736))
 (junction (pt 240 648))
@@ -934,11 +1043,14 @@ https://fpgasoftware.intel.com/eula.
 (junction (pt 384 208))
 (junction (pt -160 400))
 (junction (pt -128 400))
+(junction (pt -160 512))
+(junction (pt 240 824))
 (text "Switches on the bus" (rect -376 632 -257 646)(font "Intel Clear" (font_size 8)))
 (text "VGA Display" (rect 896 368 1022 393)(font "Intel Clear" (color 0 0 0)(font_size 14)))
 (text "LED Display on the VGA Screen" (rect 736 696 1052 721)(font "Intel Clear" (color 0 0 0)(font_size 14)))
 (text "Real LEDs on the Board" (rect 792 1016 1029 1041)(font "Intel Clear" (color 0 0 0)(font_size 14)))
 (text "Clock" (rect -728 520 -671 545)(font "Intel Clear" (color 0 0 0)(font_size 14)))
+(text "@TODO Output enable for A REG" (rect -248 880 37 901)(font "Intel Clear" (font_size 12)))
 (rectangle (rect 296 -16 1008 392)(color 85 170 255)(fill (color 221 255 253)))
 (rectangle (rect 296 440 1008 720)(color 85 170 255)(fill (color 221 255 253)))
 (rectangle (rect 296 760 1008 1040)(color 85 170 255)(fill (color 221 255 253)))
