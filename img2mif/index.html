@@ -24,8 +24,22 @@
 
         function outputMif() {
             let addr = 0;
-            for (let x = 0; x < 800; x++) {
-                for (let y = 0; y < 480; y++) {
+            let x = 0;
+            let y = 0;
+            // while (addr < 384000) {
+            //   const pixel = ctx.getImageData(x, y, 1, 1);
+            //   const v = pixel.data[0] > 1 ? '1' : '0';
+            //   mif += `${addr} : ${v} ;\n`;
+            //   addr = (y * 800) + x;
+
+            //   x++;
+            //   if (x > 800) {
+            //     x = 0;
+            //     y++;
+            //   }
+            // }
+            for (let y = 0; y < 480; y++) {
+                for (let x = 0; x < 800; x++) {
                     const pixel = ctx.getImageData(x, y, 1, 1);
                     const v = pixel.data[0] > 1 ? '1' : '0';
                     mif += `${addr} : ${v} ;\n`;
@@ -37,6 +51,7 @@
                     addr++;
                 }
             }
+            mif += `\nEND;\n`;
             output.textContent = mif;
         }
 
@@ -51,7 +66,15 @@
                     output.textContent = rgba;
     }
 
-    var mif = '';
+    var mif = `
+WIDTH=1;
+DEPTH=384000;
+
+ADDRESS_RADIX=UNS;
+DATA_RADIX=HEX;
+
+CONTENT BEGIN';
+`
 	// canvas
     var output = document.getElementById('output');
 	var canvas = document.getElementById('myCanvas');
