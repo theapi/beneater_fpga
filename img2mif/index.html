@@ -15,7 +15,7 @@
     <h2>Select image</h2>
     <input type="file" id="file-input" name="file-input"/><br />
 
-    <textarea id="output" class="output"></textarea><br />
+    <textarea id="output" rows="10" cols="80"></textarea><br />
     <button type="button" class="generate-button" onclick="outputMif()">Generate code</button><br />
     <canvas id="myCanvas" width="800" height="480"></canvas>
 
@@ -23,17 +23,21 @@
     <script>
 
         function outputMif() {
+            let addr = 0;
             for (let x = 0; x < 800; x++) {
                 for (let y = 0; y < 480; y++) {
                     const pixel = ctx.getImageData(x, y, 1, 1);
-                    console.log(pixel.data[0]);
-                    if (pixel.data[0] > 0) {
-                        output.textContent += '1, ';
-                    } else {
-                        output.textContent += '0, ';
-                    }
+                    const v = pixel.data[0] > 1 ? '1' : '0';
+                    mif += `${addr} : ${v} ;\n`;
+                    // if (pixel.data[0] > 0) {
+                    //     mif += '1, ';
+                    // } else {
+                    //     mif += '0, ';
+                    // }
+                    addr++;
                 }
             }
+            output.textContent = mif;
         }
 
     function pick(event) {
@@ -47,7 +51,7 @@
                     output.textContent = rgba;
     }
 
-
+    var mif = '';
 	// canvas
     var output = document.getElementById('output');
 	var canvas = document.getElementById('myCanvas');
